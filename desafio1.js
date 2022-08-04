@@ -1,9 +1,3 @@
-
-let libros = [
-    { title: "Harry Potter", autor: "JK Rowling" },
-    { title: "Game of Thrones ", autor: "George R. R. Martin" }
-];
-
 class Usuario {
     constructor(nombre, apellido) {
         this.nombre = nombre;
@@ -11,27 +5,37 @@ class Usuario {
         this.mascotas = [1];
     }
     getFullName = () => {
-        console.log(`Holis ${this.nombre} ${this.apellido}`)
+        return` ${this.nombre} ${this.apellido}`
     };
     addMascota = (mascota) => {
         this.mascotas.push(mascota);
     };
     countMascotas = () => {
-        console.log(this.mascotas);
+        return this.mascotas;
     };
     getBookNames = () => {
         let bookNames = libros.map((libros) => {
             return `${libros.title}`
         })
-        console.log(bookNames);
+        return bookNames;
     }
 }
 
+let libros = [
+    { title: "Harry Potter", autor: "JK Rowling" },
+    { title: "Game of Thrones ", autor: "George R. R. Martin" }
+];
 
-let usuario = new Usuario("Carla", "Donoso");
+let usuario = new Usuario("Carla", "Donoso", [],[]);
 
-usuario.getFullName();
+
 usuario.addMascota("Faki");
-usuario.countMascotas();
-usuario.getBookNames();
+usuario.getBookNames(libros);
+
+console.log(`Usuario{
+    nombre y apellido: ${usuario.getFullName()}
+    mascotas: ${usuario.countMascotas()}
+    libros:  ${usuario.getBookNames()}
+}`);
+
 
