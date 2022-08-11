@@ -1,8 +1,1 @@
-[
-  {
-    "id": "2",
-    "title": "Monitor",
-    "price": "90000 ARS",
-    "thumbnail": "https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg"
-  }
-]
+[]

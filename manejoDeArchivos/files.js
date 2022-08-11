@@ -5,9 +5,8 @@ class Contenedor {
         this.ruta = ruta;
     }
 
-    async save(nuevoObjeto) {
-        //obtener todos los datos que ya existen en el archivo
-
+    //obtener todos los datos que ya existen en el archivo
+    async save(obj) {
         const objetos = await this.getAll()
 
         //hacer la logica para obtener el nuevo id, con un condicional
@@ -15,12 +14,15 @@ class Contenedor {
         if (objetos.length == 0) {
             newId = 1
         } else {
-            const ultimoId = (objetos[objetos.lenght - 1].id)
-            newId = ultimoId + 1;
+            newId = objetos[objetos.length -1].id + 1
+            /*const ultimoId = (objetos[objetos.lenght - 1].id)
+            newId = ultimoId + 1; */
         }
         //agregar el nuevo objeto  al array que existe en el archivo
 
-        objetos.push({ id: newId, ...nuevoObjeto })
+        const newObj = {...obj, id: newId}
+        objetos.push(newObj)
+       // objetos.push({ id: newId, ...nuevoObjeto })
         //({...nuevoObjeto,id:newId)
 
         //guardar el nuevo array con el agregado
@@ -34,7 +36,9 @@ class Contenedor {
     }
 
     async getById(id) {
-        return ""
+        const objetos = await this.getAll()
+        const eliminado = objetos.find(o => o.id == id)
+        return eliminado
     }
     async getAll() {
         try {
@@ -46,41 +50,90 @@ class Contenedor {
         }
     }
 
-
+//Filtrar datos para identificar el objeto a eliminar y eliminarlo
     async deleteById(id) {
-        const objetos = await this.getAll()
-
-        //Filtrar datos para identificar el objeto a eliminar y eliminarlo
-        const nuevoObjeto =objetos.filter(elemento => elemento.id !== id)
+        /* const nuevoObjeto =objetos.filter(elemento => elemento.id !== id)
         if(nuevoObjeto.lenght === objetos.lenght){
             throw new Error(`Error no se encontro el id ${id}`)
-
-            /* otra manera explicada por la profe de resolverlo
-        const objs = await this.getAll()const index = objs.findIndex(o => o.id == id)if (index == -1) {throw new Error(`Error al borrar: no se encontró el id ${id}`)}objs.splice(index, 1)try {await fs.writeFile(this.ruta, JSON.stringify(objs, null, 2))} catch (error) {throw new Error(`Error al borrar: ${error}`)}
-        */
-        }
-        try {
-            await fs.readFile(this.ruta, JSON.stringify(nuevoObjeto, null, 2))
-        } catch (error) {
-            throw new Error(`Error al borrar ${error}`)
-        }
+            */
+        //otra manera explicada por la profe de resolverlo
+        const objs = await this.getAll()
+        const index = objs.findIndex(o => o.id == id)
+        if (index == -1) {
+            throw new Error(`Error al borrar: no se encontró el id ${id}`)
+        } 
+        objs.splice(index, 1)
+        try { await fs.writeFile(this.ruta, JSON.stringify(objs, null, 2)) }
+        catch (error) { 
+            throw new Error(`Error al borrar: ${error}`) }
     }
+    /*
+    try {
+        await fs.readFile(this.ruta, JSON.stringify(nuevoObjeto, null, 2))
+    } catch (error) {
+        throw new Error(`Error al borrar ${error}`)
+    }
+}*/
 
     async deleteAll() {
-        try {
-            await fs.promises.writeFile(this.ruta, JSON.stringify(nuevoObjeto, null, 2));
-        } catch (error) {
-            throw new Error(`Error al borrar todo`)
-        }
+        await fs.writeFile(this.ruta, JSON.stringify([], null, 2));
+
     }
 
 }
 
-const listaProductos = new Contenedor('./productos.txt')
 
-//Probando el codigo
 
-listaProductos.save({ title: 'Monitor', price: '90000 ARS', thumbnail: 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', id: '2' })
 
-listaProductos.deleteById(2);
-listaProductos.deleteAll();
+//Listo los productos
+
+const producto1 = { 
+    title: 'Monitor', 
+    price: '90000 ARS', 
+    thumbnail: 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', 
+    id: '1' 
+}
+
+const producto2 = { 
+    title: 'Mouse', 
+    price: '10000 ARS', 
+    thumbnail: 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', 
+    id: '2' 
+}
+
+const producto3 = { 
+    title: 'Silla', 
+    price: '50000 ARS', 
+    thumbnail: 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', 
+    id: '3' 
+}
+
+
+async function main(){ 
+
+    const listaProductos = new Contenedor('./productos.txt')
+
+let objetos = await listaProductos.getAll();
+console.log(objetos);
+
+let objetoId1 = await listaProductos.save(producto1);
+console.log(producto1);
+
+let objetoId2 = await listaProductos.save(producto2);
+console.log(producto2);
+
+console.log('Busco un producto por su id')
+let busquedaId = await listaProductos.getById(objetoId2);
+console.log(busquedaId);
+
+let objetoInexistente = await listaProductos.getById(666);
+console.log(`listo un producto por id que no existe ${objetoInexistente}`);
+
+let borrarId = await listaProductos.deleteById(objetoId1);
+console.log(`Borro un producto por id ${borrarId}`);
+
+await listaProductos.deleteAll();
+
+}
+
+main()
