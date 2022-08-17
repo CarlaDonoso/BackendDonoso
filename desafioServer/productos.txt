@@ -1,0 +1,23 @@
+[
+
+const producto1 = { 
+    title: 'Monitor', 
+    price: '90000 ARS', 
+    thumbnail: 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', 
+    id: '1' 
+}
+
+const producto2 = { 
+    title: 'Mouse', 
+    price: '10000 ARS', 
+    thumbnail: 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', 
+    id: '2' 
+}
+
+const producto3 = { 
+    title: 'Silla', 
+    price: '50000 ARS', 
+    thumbnail: 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', 
+    id: '3' 
+}
+]
