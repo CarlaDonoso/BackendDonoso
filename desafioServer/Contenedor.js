@@ -82,8 +82,9 @@ class Contenedor {
 
 }
 
+module.exports = Contenedor;
 
-
+/*
 
 //Listo los productos
 
@@ -115,3 +116,4 @@ await listaProductos.deleteAll();
 }
 
 main()
+*/

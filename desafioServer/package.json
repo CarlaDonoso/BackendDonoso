@@ -1,17 +1,18 @@
 {
-  "name": "desafioserver",
+  "name": "donoso",
   "version": "1.0.0",
   "description": "",
   "main": "files.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "express": "^4.18.1",
+  "dependencies": {
     "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "express": "^4.18.1"
   }
 }
