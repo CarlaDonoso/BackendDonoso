@@ -1,0 +1,22 @@
+[
+ { 
+    "title": 'Monitor', 
+    "price": '90000 ARS', 
+    "thumbnail": 'https://www.lg.com/ar/images/monitores/md07520770/gallery/D_03.jpg', 
+    "id": '1' 
+},
+
+ { 
+    "title": 'Mouse', 
+    "price": '10000 ARS', 
+    "thumbnail": 'https://mexx-img-2019.s3.amazonaws.com/35360_1.jpeg', 
+    "id": '2' 
+},
+
+{ 
+    "title": 'Silla', 
+    "price": '50000 ARS', 
+    "thumbnail": 'https://oportunidades-vip.com.ar/wp-content/uploads/2021/06/portada-10.jpg', 
+    "id": '3' 
+}
+]
