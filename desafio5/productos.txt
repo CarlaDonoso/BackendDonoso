@@ -1,0 +1,22 @@
+[
+ { 
+    "title": 'Monitor', 
+    "price": '90000 ARS', 
+    "thumbnail": 'https://cdn3.iconfinder.com/data/icons/device-and-technology-9/64/2-Computer-128.png', 
+    "id": '1' 
+},
+
+ { 
+    "title": 'Mouse', 
+    "price": '10000 ARS', 
+    "thumbnail": 'https://cdn3.iconfinder.com/data/icons/device-and-technology-9/64/3-Mouse-128.png', 
+    "id": '2' 
+},
+
+{ 
+    "title": 'Silla', 
+    "price": '50000 ARS', 
+    "thumbnail": 'https://cdn4.iconfinder.com/data/icons/thin-office/24/thin-1591_office_chair-128.png', 
+    "id": '3' 
+}
+]
