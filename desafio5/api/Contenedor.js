@@ -50,6 +50,12 @@ class Contenedor {
         }
     }
 
+    guardar(prod) {
+        const newProd = { ...prod, id: ++this.id }
+        this.productos.push(newProd)
+        return newProd
+    }
+
 //Filtrar datos para identificar el objeto a eliminar y eliminarlo
     async deleteById(id) {
         /* const nuevoObjeto =objetos.filter(elemento => elemento.id !== id)
